@@ -14,10 +14,14 @@ pipeline {
                 writeFile file: 'myfile.txt', text: 'Modified content'
             }
         }
-        stage('cp file') {
+        stage('Commit and Push') {
             steps {
-                // 파일을 가상 머신의 로컬 디렉토리로 복사
-                sh 'scp -r ./myfile.txt centos@192.168.111.100:/home/centos'
+                // 수정한 파일을 스테이징하고 커밋
+                sh 'git add .'
+                sh 'git commit -m "Update file"'
+                
+                // 커밋한 내용을 원격 저장소로 푸시
+                sh 'git push origin main'
             }
         }
     }
