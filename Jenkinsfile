@@ -17,7 +17,9 @@ pipeline {
         stage('cp file') {
             steps {
                 // 파일을 가상 머신의 로컬 디렉토리로 복사
-                sh 'scp -o StrictHostKeyChecking=no -r ./myfile.txt centos@192.168.111.100:/home/centos'
+                sh 'ssh centos@192.168.111.100'
+                sh 'centos'
+                sh 'scp -r ./myfile.txt centos@192.168.111.100:/home/centos'
                 sh 'centos'
             }
         }
