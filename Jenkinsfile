@@ -5,14 +5,13 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Git 저장소에서 소스 코드 체크아웃
-                git 'https://github.com/StarsinLiver/jenkins-test.git'
-                sh 'echo 됬냐???'
+                git url: 'https://github.com/StarsinLiver/jenkins-test.git'
             }
         }
         stage('Modify') {
             steps {
                 // 파일 수정 등의 작업 수행
-                sh 'echo "Modified content" > myfile.txt'
+                writeFile file: 'myfile.txt', text: 'Modified content'
             }
         }
         stage('Commit and Push') {
