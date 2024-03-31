@@ -4,8 +4,8 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // GitHub에서 소스 코드 체크아웃
-                git 'https://github.com/StarsinLiver/jenkins-test.git'
+                // Git 저장소에서 소스 코드 체크아웃
+                git url: 'https://github.com/StarsinLiver/jenkins-test.git', branch: 'main'
             }
         }
         stage('Build') {
