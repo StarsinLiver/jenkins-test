@@ -11,6 +11,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Gradle 빌드 실행
+                sh 'chmod +x gradlew'
                 sh './gradlew build'
             }
         }
