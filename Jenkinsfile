@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // GitHub에서 소스 코드 체크아웃
-                git 'https://github.com/yourusername/yourrepository.git'
+                git 'https://github.com/StarsinLiver/jenkins-test.git'
             }
         }
         stage('Build') {
