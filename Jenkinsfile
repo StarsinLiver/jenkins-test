@@ -4,28 +4,23 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Git 저장소에서 소스 코드 체크아웃
-                git url: 'https://github.com/StarsinLiver/jenkins-test.git', branch: 'main'
+                // GitHub에서 소스 코드 체크아웃
+                git 'https://github.com/yourusername/yourrepository.git'
             }
         }
-        stage('Modify') {
+        stage('Build') {
             steps {
-                // 파일 수정 등의 작업 수행
-                writeFile file: 'myfile.txt', text: 'Modified content'
+                // Gradle 빌드 실행
+                sh './gradlew build'
             }
         }
-        stage('cp file') {
+        stage('Transfer Artifacts') {
             steps {
-                // 파일을 가상 머신의 로컬 디렉토리로 복사
-                //sh 'ssh centos@192.168.111.100'
-                //sh 'centos'
-                sh 'scp -r ./myfile.txt centos@192.168.111.100:/home/centos'
-                
-                // sh 'centos'
+                // 빌드된 파일을 원격 서버로 전송
+                sh 'scp -r ./build/libs/*.war centos@192.168.111.100:/home/centos/build'
             }
         }
     }
-    
     post {
         success {
             // 성공적으로 푸시한 경우 실행되는 작업
